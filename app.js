@@ -132,16 +132,24 @@ app.get('/free_view/:fNum', function(req,res){
 });
 
 app.get('/free_view', function(req,res){
-  var page = req.query.page;
-  if (page == undefined)
-  {
-	  page = 1;
-  }
-  var sql = 'Select * From f_board order by fNum desc limit ' + ((page-1) * 20) + ', 20';
-  c.query(sql, function(err, rows) {
+  var page_sql = 'SELECT COUNT(*) from f_board';
+  var article_count = 0;
+  c.query(page_sql, function(err, count) {
     if (err)
       throw err;
-    res.render('topic/free_view',{rows:rows});
+    
+    var page = req.query.page;
+    if (page == undefined)
+    {
+	    page = 1;
+    }
+    var sql = 'Select * From f_board order by fNum desc limit ' + ((page-1) * 20) + ', 20';
+    c.query(sql, function(err, rows) {
+      if (err)
+        throw err;
+    
+      res.render('topic/free_view',{rows:rows, article_count:article_count});
+    });
   });
 });
 
