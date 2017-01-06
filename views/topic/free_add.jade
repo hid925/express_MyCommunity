@@ -1,7 +1,7 @@
 extends ../layout
 block content
   div(style='margin-top:50px')
-    form(action='/free_view/add' method='post')
+    form(action='/free_view/add' method='post' enctype='multipart/form-data')
       table( width='900' , style='')
         thead
           tr 
@@ -19,6 +19,9 @@ block content
           tr
             td 
               textarea(name='fContent' rows='20' cols='140' )
+          tr
+            td
+              input(type='file' name='upload')
           tr
             td
               a(href='/free_view') 뒤로 

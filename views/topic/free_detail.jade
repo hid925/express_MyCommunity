@@ -19,7 +19,13 @@ block content
             td(width='50')= rows[0].fHit
           tr
             td(align='center') 내용
-            td(height='150' colspan='5')= rows[0].fContent
+            td(height='150' colspan='5')
+              if rows[0].file
+                img(src='../public/uploads/free/images/'+rows[0].file)
+                br
+              = rows[0].fContent
+              
+            
           tr
             td(colspan='5')
               a(href='/free_view') 목록

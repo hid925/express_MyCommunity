@@ -5,6 +5,22 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+var savename;
+var multer = require('multer');
+var _storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'public/uploads/free/images')
+  },
+  filename: function (req, file, cb) {
+    var datetimestamp = Date.now();
+    cb(null, datetimestamp + '.' + file.originalname.split('.')[file.originalname.split('.').length -1]);
+
+  //cb(null, Date.now()+ '_' + file.originalname )
+  savename = datetimestamp + '.' + file.originalname.split('.')[file.originalname.split('.').length -1]
+  }
+})
+var upload = multer({ storage: _storage})
+
 var index = require('./routes/index');
 //var users = require('./routes/users');
 var topic = require('./routes/topic')
@@ -26,7 +42,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
 //app.use('/free_view', topic);
 //app.use('/users', users);
-
+app.use('/public/uploads/free/images',express.static('public/uploads/free/images'))
 
 var Client = require('mariasql');
 
@@ -40,7 +56,6 @@ var c = new Client({
 
 
 
-
 app.get('/free_view/:fNum/delete',function(req,res){
   var fNum = req.params.fNum;
   var sql = 'DELETE FROM f_board WHERE fNum = ?';
@@ -51,7 +66,6 @@ app.get('/free_view/:fNum/delete',function(req,res){
     res.redirect('/free_view');
   });
 });
-
 
 app.post('/free_view/:fNum/edit',function(req,res){
   var sql = 'UPDATE f_board SET fTitle=?, fCategory=?, fContent=? WHERE fNum=?';
@@ -74,7 +88,6 @@ app.post('/free_view/:fNum/edit',function(req,res){
     }
   });
 });
-
 app.get('/free_view/:fNum/edit',function(req,res){
   var fNum = req.params.fNum
   if(!fNum){
@@ -92,15 +105,16 @@ app.get('/free_view/:fNum/edit',function(req,res){
   //res.send('edit');
 });
 
-app.post('/free_view/add', function(req,res){
+app.post('/free_view/add',upload.single('upload'), function(req,res){
   var title = req.body.fTitle;
   var category = req.body.fCategory;
   var content = req.body.fContent;
   var did = req.body.fDid;     //나중에 로그인 하고 수정
   var id = req.body.fId;           //나중에 로그인 하고 수정
+  var filename = savename;
 
-  var sql = 'INSERT INTO f_board (fTitle, fCategory, fContent, fDid, fId) VALUES(?,?,?,?,?)';
-  c.query(sql, [title, category, content, did, id], function(err, result, fields){
+  var sql = 'INSERT INTO f_board (fTitle, fCategory, fContent, fDid, fId, file) VALUES(?,?,?,?,?,?)';
+  c.query(sql, [title, category, content, did, id, savename], function(err, result, fields){
     if(err){
       console.log(err);
     }else{
@@ -108,7 +122,6 @@ app.post('/free_view/add', function(req,res){
     }
   })
 });
-
 app.get('/free_view/add', function(req,res){
   res.render('topic/free_add');
 });
@@ -130,7 +143,6 @@ app.get('/free_view/:fNum', function(req,res){
     }
   })
 });
-
 app.get('/free_view', function(req,res){
   var sql = 'Select * From f_board order by fNum desc'
   c.query(sql, function(err, rows) {
