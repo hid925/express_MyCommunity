@@ -1,0 +1,28 @@
+extends ../layout
+block content
+  div(style='margin-top:50px')
+  form(action='/free_view/'+rows[0].fNum +'/edit' method='post')
+    table( width='900' , style='')
+      thead
+        tr 
+          h2 글수정
+      tbody(bgcolor='white', align='center')
+        tr
+          td
+            select(name='fCategory')
+              option(value=
+                rows[0].fCategory) 
+               =rows[0].fCategory
+              option(value='1') 1번 카테고리
+              option(value='2') 2번 카테고리
+              option(value='3') 3번 카테고리
+              option(value='4') 4번 카테고리
+            input(type='text', name='fTitle', value=rows[0].fTitle, size=120)  
+        tr
+          td
+            textarea(name='fContent' rows='20' cols='140' ) 
+              =rows[0].fContent
+        tr
+          td(align='center')
+            a(href='/free_view') 목록
+            input('type=submit')

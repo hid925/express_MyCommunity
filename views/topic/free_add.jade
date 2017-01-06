@@ -1,0 +1,27 @@
+extends ../layout
+block content
+  div(style='margin-top:50px')
+    form(action='/free_view/add' method='post')
+      table( width='900' , style='')
+        thead
+          tr 
+            h2 글쓰기
+        tbody(bgcolor='white', align='center')
+          tr
+            td 
+              select(name='fCategory')
+                option(value='0') ---------
+                option(value='1') 1번 카테고리
+                option(value='2') 2번 카테고리
+                option(value='3') 3번 카테고리
+                option(value='4') 4번 카테고리
+              input(type='text', name='fTitle', placeholder='제목', size=120)  
+          tr
+            td 
+              textarea(name='fContent' rows='20' cols='140' )
+          tr
+            td
+              a(href='/free_view') 뒤로 
+              input(type='submit')
+              input(type='hidden' name='fDid' value='guest')
+              input(type='hidden' name='fId' value='guest') 

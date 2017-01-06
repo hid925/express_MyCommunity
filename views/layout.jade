@@ -1,0 +1,29 @@
+doctype html
+
+html
+  head(charset='utf-8')
+    title My Community
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='javascript', href='/javascript/js.js')
+  
+  body
+    header
+      h1 
+        a(href='/') My Community !!
+      div
+        nav
+          ul
+            li
+              a(href='/free_view') 자유게시판 
+            li
+              a(href='/free_view') 자유게시판?
+            li
+              a(target='mains', href='/free_view') 자유게시판
+            li
+              a(target='mains', href='/free_view') 자유게시판
+    block content
+    
+    footer
+      | 나는 푸터
+      
+  

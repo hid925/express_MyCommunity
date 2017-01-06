@@ -1,0 +1,27 @@
+extends ../layout
+block content
+  div(style='margin-top:40px')
+    table( width='900' , style='')
+      thead
+        tr 
+          h2 자유게시판
+      tbody
+        tr(bgcolor='skyblue', align='center')
+          td(width='30') 번호
+          td(width='50') 카테고리
+          td() 제목
+          td(width='70') 글쓴이
+          td(width='100') 날짜
+          td(width='30') Hit
+          
+        each post, i in rows
+          tr(bgcolor='white', align='center', class=(i % 2 == 0) ? 'odd' : 'even') 
+            td= post.fNum 
+            td= post.fCategory
+            td(align='left', style='padding-left:5px')
+              a(href='/free_view/' + post.fNum) #{post.fTitle}
+            td= post.fDid  
+            td= post.fDate
+            td= post.fHit      
+            
+    a(href='/free_view/add') 글쓰기

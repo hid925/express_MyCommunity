@@ -1,0 +1,59 @@
+doctype html
+
+html
+  head(charset='utf-8')
+    title My Community
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    
+  body
+    header
+      h1 
+        a(href='/') My Community !!
+      div
+        nav
+          ul
+            li
+              a(href='/free_view') 자유게시판
+            li
+              a(href='/free_view') 자유게시판
+            li
+              a(target='mains', href='/free_view') 자유게시판
+            li
+              a(target='mains', href='/free_view') 자유게시판
+    content  
+    div
+      table( width='900' , style='')
+        thead
+          tr 
+            h2 자유게시판
+        tbody
+          tr(bgcolor='skyblue', align='center')
+            td(width='30') 번호
+            td(width='50') 카테고리
+            td() 제목
+            td(width='70') 글쓴이
+            td(width='100') 날짜
+            td(width='30') Hit
+            
+          each post, i in rows
+            tr(bgcolor='white', align='center', class=(i % 2 == 0) ? 'odd' : 'even') 
+              td= post.fNum 
+              td= post.fCategory
+              td(align='left', style='padding-left:5px')
+                a(href='/ /' + post.fNum) #{post.fTitle}
+              td= post.fDid  
+              td= post.fDate
+              td= post.fHit          
+                      
+      //- ul
+      //-   each row in rows
+      //-     li
+      //-       -console.log(row.fNum);
+      //-       a(href='/topic/'+row.fNum)= row.fTitle
+    footer
+      | 나는 푸터
+      
+
+
+
+  
