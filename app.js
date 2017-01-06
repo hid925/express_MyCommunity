@@ -132,10 +132,13 @@ app.get('/free_view/:fNum', function(req,res){
 });
 
 app.get('/free_view', function(req,res){
-  var row_count = 10;
   var page = req.query.page;
-  var sql = 'Select * From f_board order by fNum desc between ? and ?'
-  c.query(sql, [1 + (page-1) * row_count], [row_count * page], function(err, rows) {
+  if (page == undefined)
+  {
+	  page = 1;
+  }
+  var sql = 'Select * From f_board order by fNum desc limit ' + ((page-1) * 20) + ', 20';
+  c.query(sql, function(err, rows) {
     if (err)
       throw err;
     res.render('topic/free_view',{rows:rows});
