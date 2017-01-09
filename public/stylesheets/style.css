@@ -4,6 +4,7 @@
 }
 
 head {
+
 }
 
 body {
@@ -12,6 +13,8 @@ body {
 	width: 940px;
 	font: 13px/22px Helvetica, Arial, sans-serif;
   background-color: pink;
+	border:1px solid red;
+	background-attachment:fixed;
 }
 /*body {
   padding: 50px;
@@ -49,6 +52,7 @@ nav {
 	position: absolute;
 	left: 0;
 	width: 100%;
+	border:1px solid black
 	/*background: url("images/nav_background.png");*/
 }
 
@@ -94,7 +98,7 @@ nav {
 
       content {
       	display: table;
-        padding-top: 44px;
+        padding-top: 64px;
       }
 
       #mainContent {
@@ -103,8 +107,9 @@ nav {
         padding-right: 22px;
         padding-top: 33px;
         padding-left: 22px;
+				border:1px solid black
       }
 
       footer {
-
+				border:1px solid black
       }
