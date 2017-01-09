@@ -172,8 +172,8 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-app.listen(3000, function() {     //3000포트로 연결
-  console.log('Conneted, 3000 port!');
+app.listen(8080, function() {
+  console.log('Conneted, 8080 port!');
 });
 
 
