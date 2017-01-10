@@ -1,0 +1,46 @@
+extends ../layout
+block content
+  div(name='mid' style='margin-top:45px;border:1px solid white; float:left; width:100%')
+    form(action='/users/register' method='post')
+      table(width='50%')
+        thead
+          tr
+            h2 회원가입
+          td 기본 정보
+        tbody
+          tr(bgcolor='white', align='center')
+            td ID
+            td 
+              input(type='text', name='id') 
+            td 중복확인
+          tr(bgcolor='white', align='center')
+            td PW
+            td 
+              input(type='password',name='id_c') 
+          tr(bgcolor='white', align='center' name='pw')
+            td PW확인
+            td 
+              input(type='password') 
+          tr(bgcolor='white', align='center')
+              td 닉네임
+              td 
+                input(type='text',name='pw_c') 
+              td 중복확인  
+          tr(bgcolor='white', align='center')
+            td 이메일
+            td 
+              input(type='text', name='email')
+          tr(bgcolor='white', align='center' )
+            td 이메일 주소 확인
+            td 
+              input(type='text', name='email_c') 
+          tr(bgcolor='white', align='center')
+            td 
+              input(type='submit')
+
+
+
+
+    
+  
+  

@@ -13,7 +13,7 @@ body {
 	width: 940px;
 	font: 13px/22px Helvetica, Arial, sans-serif;
   background-color: pink;
-	border:1px solid red;
+	/*border:1px solid red;*/
 	background-attachment:fixed;
 }
 /*body {

@@ -7,25 +7,46 @@ html
     link(rel='javascript', href='/javascript/js.js')
   
   body
+    div(style='border:2px solid white; float:right; width:100%;')
+      div(style='float:left;')
+        | 안녕 
+      div(style='float:right;')
+        table
+          tr
+            td
+              |구글
+              |페이스북
+              |네이버
+              |카카오&nbsp
+              a(href='/users/register') 회원가입
+            td
+              input(type='text', name='id', size='15', placeholder='ID')
+            td
+              input(type='password', name='pw', size='15', placeholder='PW')
+              td
+                |&nbsp
+                a(href='/login') 로그인
     header
-      h1 
-        div(style='border:1px solid black')
-          a(href='/') My Community !!
-      
-      div
-        nav
-          ul
-            li
-              a(href='/free_view') 자유게시판 
-            li
-              a(href='/free_view') 자유게시판?
-            li
-              a(target='mains', href='/free_view') 자유게시판
-            li
-              a(target='mains', href='/free_view') 자유게시판
+      div(name='top')
+        div(style='border:1px solid white; float:left; width:100%')
+          h1 
+            a(href='/') My Community !      
+        div(style='border:1px solid white; float:left; width:100%')
+          nav
+            ul
+              li
+                a(href='/free_view') 자유게시판 
+              li
+                a(href='/free_view') 자유게시판?
+              li
+                a(href='/free_view') 자유게시판!
+              li
+                a(href='/free_view') 자유게시판?!
     block content
     
     footer
-      | 나는 푸터
-      
+      div(name='bot',style='border:1px solid white; float:left; width:100%')
+  
+        | 나는 푸터
+    
   
