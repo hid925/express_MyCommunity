@@ -9,23 +9,23 @@ html
   body
     div(style='border:2px solid white; float:right; width:100%;')
       div(style='float:left;')
-        | 안녕 
       div(style='float:right;')
-        table
-          tr
-            td
-              |구글
-              |페이스북
-              |네이버
-              |카카오&nbsp
-              a(href='/users/register') 회원가입
-            td
-              input(type='text', name='id', size='15', placeholder='ID')
-            td
-              input(type='password', name='pw', size='15', placeholder='PW')
+        form(action='/users/login' method='post')
+          table
+            tr
               td
-                |&nbsp
-                a(href='/login') 로그인
+                |구글
+                |페이스북
+                |네이버
+                |카카오&nbsp
+                a(href='/users/register') 회원가입
+              td
+                input(type='text', name='username', size='15', placeholder='ID')
+              td
+                input(type='password', name='password', size='15', placeholder='PW')
+                td
+                  |&nbsp
+                  input(type='submit', value='로그인')
     header
       div(name='top')
         div(style='border:1px solid white; float:left; width:100%')

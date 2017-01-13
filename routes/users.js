@@ -1,31 +1,54 @@
-var router = require('express').Router();
-var db = require('../../config/db')();
+module.exports = function(passport){
+  var router = require('express').Router();
+  var db = require('../config/db')();
+  var pbkdf2password = require("pbkdf2-password");
+  var hasher = pbkdf2password();
 
+  router.post('/login'
+    ,passport.authenticate(
+      'local',
+      {
+        successRedirect: '/',
+        failureRedirect: '/',
+        failureFlash: false
+      }
+    )
+  );
 
-// /* GET users listing. */
-// router.get('/', function(req, res, next) {
-//   res.send('respond with a resource');
-// });
-router.get('/login', function(req,res){
-  //로그인 처리
-  res.redirect('/');
-})
+  router.post('/register', function(req,res){
+    hasher({password:req.body.password},function(err, pass, salt, hash){
+      var sql = 'INSERT INTO user(userId, userName, userPw, userSalt, userDid, userEmail) VALUES(?, ?, ?, ?, ?, ?)';
+      db.query(sql,[
+        'local:'+req.body.username,
+        req.body.username,
+        hash,
+        salt,
+        req.body.did,
+        req.body.email
+      ], function(err,result){
+        if(err){
+          console.log(err);
+        } else {
+          //res.redirect('/');
+          // req.login(user, function(err){
+          //   req.session.save(function(){
+          //     res.redirect('/');
+          //   });
+          // });
+        }
 
+        //console.log(result);
+      });
+    });
+  });
 
-router.post('/register', function(req,res){
-  var id = req.body.id;
-  var pw = req.body.pw;
-  var did = req.body.did;
-  var email = req.body.email;
+  router.get('/register', function(req, res){
+    res.render('users/register');
+  });
 
-  //디비에 추가할자리
+  router.get('/test', function(req,res){
+    res.send(req.session.passport.user)
+  });
 
-  res.redirect('/');
-});
-
-router.get('/register', function(req, res){
-  res.render('users/register');
-});
-
-
-module.exports = router;
+ return router;
+}

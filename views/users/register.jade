@@ -11,20 +11,20 @@ block content
           tr(bgcolor='white', align='center')
             td ID
             td 
-              input(type='text', name='id') 
+              input(type='text', name='username') 
             td 중복확인
           tr(bgcolor='white', align='center')
             td PW
             td 
-              input(type='password',name='id_c') 
-          tr(bgcolor='white', align='center' name='pw')
+              input(type='password',name='password') 
+          tr(bgcolor='white', align='center' name='password')
             td PW확인
             td 
-              input(type='password') 
+              input(type='password',name='password_c') 
           tr(bgcolor='white', align='center')
               td 닉네임
               td 
-                input(type='text',name='pw_c') 
+                input(type='text',name='did') 
               td 중복확인  
           tr(bgcolor='white', align='center')
             td 이메일
@@ -35,7 +35,7 @@ block content
             td 
               input(type='text', name='email_c') 
           tr(bgcolor='white', align='center')
-            td 
+            td(colspan='2')
               input(type='submit')
 
 

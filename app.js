@@ -1,9 +1,10 @@
 var app = require('./config/express')();
+var passport = require('./config/passport')(app);
 
 var index = require('./routes/index');
 app.use('/', index);
 
-var users = require('./routes/users');
+var users = require('./routes/users')(passport);
 app.use('/users', users);
 
 var topic = require('./routes/topics/topic');
